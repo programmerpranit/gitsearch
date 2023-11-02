@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import NextNProgress from "nextjs-progressbar";
 import Head from "next/head";
+import Footer from "@/components/Footer";
 
 export default function App({
   Component,
@@ -27,6 +28,7 @@ export default function App({
       <Navbar />
       <ToastContainer />
       <Component {...pageProps} />
+      <Footer />
     </>
   );
 }

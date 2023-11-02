@@ -18,27 +18,18 @@ const AddRepoPage = (): JSX.Element => {
     lang: string
   ): Promise<void> => {
     try {
-      if (lang === "JavaScript") {
-        const url = `https://raw.githubusercontent.com/${user}/${repo}/main/package.json`;
-        const res = await axios.get(url);
+      console.log(lang);
+      // if (lang === "JavaScript") {
+      console.log("Fetching");
+      const url = `https://raw.githubusercontent.com/${user}/${repo}/main/package.json`;
+      const res = await axios.get(url);
+      console.log(res);
+      const dep = Object.keys(res.data.dependencies);
 
-        const sk = {
-          "@tiptap/extension-image": "^2.0.0-beta.220",
-          "@tiptap/extension-link": "^2.0.3",
-          "@tiptap/pm": "^2.0.0-beta.220",
-          "@tiptap/react": "^2.0.0-beta.220",
-          "@tiptap/starter-kit": "^2.0.0-beta.220",
-          axios: "^1.3.4",
-          cloudinary: "^1.35.0",
-          "crypto-js": "^4.1.1",
-        };
+      console.log(dep);
 
-        const dep = Object.keys(res.data.dependencies);
-
-        console.log(dep);
-
-        setDependencies(dep);
-      }
+   3   setDependencies(dep);
+      // }
     } catch (error) {
       console.log(error);
     }
@@ -49,6 +40,7 @@ const AddRepoPage = (): JSX.Element => {
       const url = `https://api.github.com/repos/${user}/${repo}`;
       const res = await axios.get(url);
       setRepoDetails(res.data);
+      console.log("This is Get Repo Details Data", res.data);
       await fetchPackages(user, repo, res.data.language);
       console.log(res);
     } catch (error) {
