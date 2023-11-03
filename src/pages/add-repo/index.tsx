@@ -18,16 +18,18 @@ const AddRepoPage = (): JSX.Element => {
     lang: string
   ): Promise<void> => {
     try {
-      if (lang === "JavaScript") {
-        const url = `https://raw.githubusercontent.com/${user}/${repo}/main/package.json`;
-        const res = await axios.get(url);
+      console.log(lang);
+      // if (lang === "JavaScript") {
+      console.log("Fetching");
+      const url = `https://raw.githubusercontent.com/${user}/${repo}/main/package.json`;
+      const res = await axios.get(url);
+      console.log(res);
+      const dep = Object.keys(res.data.dependencies);
 
-        const dep = Object.keys(res.data.dependencies);
+      console.log(dep);
 
-        console.log(dep);
-
-        setDependencies(dep);
-      }
+      setDependencies(dep);
+      // }
     } catch (error) {
       console.log(error);
     }
@@ -38,6 +40,7 @@ const AddRepoPage = (): JSX.Element => {
       const url = `https://api.github.com/repos/${user}/${repo}`;
       const res = await axios.get(url);
       setRepoDetails(res.data);
+      console.log("This is Get Repo Details Data", res.data);
       await fetchPackages(user, repo, res.data.language);
       console.log(res);
     } catch (error) {
