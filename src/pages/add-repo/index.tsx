@@ -22,17 +22,6 @@ const AddRepoPage = (): JSX.Element => {
         const url = `https://raw.githubusercontent.com/${user}/${repo}/main/package.json`;
         const res = await axios.get(url);
 
-        const sk = {
-          "@tiptap/extension-image": "^2.0.0-beta.220",
-          "@tiptap/extension-link": "^2.0.3",
-          "@tiptap/pm": "^2.0.0-beta.220",
-          "@tiptap/react": "^2.0.0-beta.220",
-          "@tiptap/starter-kit": "^2.0.0-beta.220",
-          axios: "^1.3.4",
-          cloudinary: "^1.35.0",
-          "crypto-js": "^4.1.1",
-        };
-
         const dep = Object.keys(res.data.dependencies);
 
         console.log(dep);
